@@ -14,6 +14,7 @@ public class ViasDB extends SQLiteOpenHelper {
     private static final String TABLE_SECTORES = "sectores";
     private static final String TABLE_VIAS = "vias";
     private static final String TABLE_ENCADENES = "encadenes";
+    private static final String TABLE_COMENTARIOS = "comentarios";
     private static int version = 1;
 
     // Constructor
@@ -28,7 +29,7 @@ public class ViasDB extends SQLiteOpenHelper {
         db.execSQL("create table if not exists " + TABLE_ESCUELAS + "(" +
                 "idEscuela integer primary key autoincrement, " +
                 "nombre varchar, " +
-                "tipoRoca, " +
+                "tipoRoca varchar, " +
                 "provincia varchar, " +
                 "localizacion varchar)");
 
@@ -36,7 +37,7 @@ public class ViasDB extends SQLiteOpenHelper {
         db.execSQL("create table if not exists " + TABLE_SECTORES + "(" +
                 "idSector integer primary key autoincrement, " +
                 "nombre varchar, " +
-                "tipoEscalada, " +
+                "tipoEscalada varchar, " +
                 "idEscuela integer, " +
                 "foreign key(idEscuela) references " + TABLE_ESCUELAS + "(idEscuela))");
 
@@ -47,16 +48,26 @@ public class ViasDB extends SQLiteOpenHelper {
                 "grado varchar, " +
                 "longitud integer, " +
                 "numChapas integer, " +
-                "numReuniones, " +
-                "descriptReunion, " +
-                "comentario varchar, " +
+                "numReuniones integer, " +
+                "descriptReunion varchar, " +
+                "pegues integer, " +
+                "proyecto boolean, " +
+                "favorita boolean, " +
                 "idSector integer, foreign key (idSector) references " + TABLE_SECTORES + "(idSector))");
 
         // Crear la tabla ENCADENES
         db.execSQL("create table if not exists " + TABLE_ENCADENES + " (" +
                 "idEncadene integer primary key autoincrement, " +
                 "pegues integer, " +
-                "comentario varchar, " +
+                "fecha date, " +
+                "idVia integer, " +
+                "foreign key(idVia) references " + TABLE_VIAS + "(idVia))");
+
+        // Crear la table COMENTARIOS
+        db.execSQL("create table if not exists " + TABLE_COMENTARIOS + "(" +
+                "idComentario integer primary key autoincrement, " +
+                "fecha date, " +
+                "contenido varchar, " +
                 "idVia integer, " +
                 "foreign key(idVia) references " + TABLE_VIAS + "(idVia))");
     }
@@ -64,12 +75,14 @@ public class ViasDB extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
-        /*
+
         db.execSQL("drop table if exists " + TABLE_ESCUELAS);
         db.execSQL("drop table if exists " + TABLE_SECTORES);
         db.execSQL("drop table if exists " + TABLE_VIAS);
         db.execSQL("drop table if exists " + TABLE_ENCADENES);
-         */
+        db.execSQL("drop table if exists " + TABLE_COMENTARIOS);
+
+        onCreate(db);
     }
 
     // Añadir una escuela nueva

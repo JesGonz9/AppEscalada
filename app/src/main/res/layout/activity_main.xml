@@ -6,13 +6,50 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
+
+    <Button
+        android:id="@+id/maBtnVerEscuelas"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:text="VER ESCUELAS"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.332" />
+
+    <Button
+        android:id="@+id/maBtnEncadenadas"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="VÍAS ENCADENADAS"
+        app:layout_constraintEnd_toEndOf="@+id/maBtnVerEscuelas"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/maBtnVerEscuelas"
+        app:layout_constraintTop_toBottomOf="@+id/maBtnVerEscuelas" />
+
+    <Button
+        android:id="@+id/maBtnProyectos"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="MIS PROYECTOS"
+        app:layout_constraintEnd_toEndOf="@+id/maBtnEncadenadas"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="@+id/maBtnEncadenadas"
+        app:layout_constraintTop_toBottomOf="@+id/maBtnEncadenadas" />
+
+    <Button
+        android:id="@+id/maBtnFav"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="FAVORITAS"
+        app:layout_constraintEnd_toEndOf="@+id/maBtnProyectos"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/maBtnProyectos"
+        app:layout_constraintTop_toBottomOf="@+id/maBtnProyectos" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

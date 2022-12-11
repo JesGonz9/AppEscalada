@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="8dp">
+
+
+    <TextView
+        android:id="@+id/itemEscuelasTvNombre"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:text="Hoces Free"
+        android:textColor="@color/black"
+        android:textSize="15dp" />
+
+    <TextView
+        android:id="@+id/itemEscuelasTvTipoRoca"
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:text="Conglomerado"
+        android:textColor="@color/black"
+        android:textSize="15dp" />
+
+    <TextView
+        android:id="@+id/itemEscuelasTvProvincia"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:text="León"
+        android:textColor="@color/black"
+        android:textSize="15dp" />
+
+    <TextView
+        android:id="@+id/itemEscuelasTvNumSectores"
+        android:layout_width="35dp"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:text="10"
+        android:textColor="@color/black"
+        android:textSize="15dp" />
+
+</LinearLayout>

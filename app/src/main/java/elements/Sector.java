@@ -5,11 +5,13 @@ package elements;
 public class Sector {
 
     // Atributos
+    private int idSector = -1;
     private String nombre = "";
     private String tipoEscalada = "";
 
     // Constructor
-    public Sector(String nombre, String tipoEscalada) {
+    public Sector(int idSector, String nombre, String tipoEscalada) {
+        this.idSector = idSector;
         this.nombre = nombre;
         this.tipoEscalada = tipoEscalada;
     }

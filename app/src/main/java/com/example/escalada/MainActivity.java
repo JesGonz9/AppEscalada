@@ -25,11 +25,6 @@ public class MainActivity extends AppCompatActivity {
         // Instanciar base de datos
         ViasDB viasDB = new ViasDB(this);
 
-        viasDB.addEscuela("Hoces Free", "Caliza", "Hoces de Vegacervera", "León");
-        viasDB.addSector("El Rincón", "Placa", 1);
-        viasDB.addVia("Tres Tristes Tigre", "7a", 35, 25, 2, "argolla", 0, true, false, 1);
-        System.out.println("Vias aniadida");
-
         // Boton de ver escuelas (prueba)
         Button btnEscuelas = findViewById(R.id.maBtnVerEscuelas);
         btnEscuelas.setOnClickListener(v -> {

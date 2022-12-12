@@ -152,6 +152,7 @@ public class ViasDB extends SQLiteOpenHelper {
 
         do {
 
+            int idViaPos = cursor.getColumnIndex("idVia");
             int nomPos = cursor.getColumnIndex("nomVia");
             int gradoPos = cursor.getColumnIndex("grado");
             int longitudPos = cursor.getColumnIndex("longitud");
@@ -163,6 +164,7 @@ public class ViasDB extends SQLiteOpenHelper {
             int favoritaPos = cursor.getColumnIndex("favorita");
             int idSectorPos = cursor.getColumnIndex("idSector");
 
+            int idVia = cursor.getInt(idViaPos);
             String nom = cursor.getString(nomPos);
             String grado = cursor.getString(gradoPos);
             int longitud = cursor.getInt(longitudPos);
@@ -175,13 +177,16 @@ public class ViasDB extends SQLiteOpenHelper {
             int idSector = cursor.getInt(idSectorPos);
 
 
-            vias.add(new Via(nom, grado, longitud, numChapas, numReuniones, descriptReunion, pegues, proyecto, favorita, idSector));
+            vias.add(new Via(idVia, nom, grado, longitud, numChapas, numReuniones, descriptReunion, pegues, proyecto, favorita, idSector));
 
         } while(cursor.moveToNext());
 
         return vias;
     }
 
+    // Devuelve la escuela a partir del id
+
+    // Devuelve un ArrayList de los sectores que contiene la escuela que le indiquemos con el id
     public ArrayList<Sector> getSectores(int idEscuelaBuscar) {
 
         ArrayList<Sector> sectores = new ArrayList<>();
@@ -193,13 +198,15 @@ public class ViasDB extends SQLiteOpenHelper {
 
         do {
 
+            int idSectorPos = cursor.getColumnIndex("idSector");
             int nombrePos = cursor.getColumnIndex("nombreSector");
             int tipoEscaladaPos = cursor.getColumnIndex("tipoEscalada");
 
+            int idSector = cursor.getInt(idSectorPos);
             String nombre = cursor.getString(nombrePos);
             String tipoEscalasa = cursor.getString(tipoEscaladaPos);
 
-            sectores.add(new Sector(nombre, tipoEscalasa));
+            sectores.add(new Sector(idSector, nombre, tipoEscalasa));
 
         } while(cursor.moveToNext());
 

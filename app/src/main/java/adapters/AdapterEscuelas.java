@@ -11,14 +11,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.escalada.R;
 
 import java.util.ArrayList;
-import java.util.zip.Inflater;
 
 import elements.Escuela;
 
-public class AdapterEscuelas extends RecyclerView.Adapter<AdapterEscuelas.ViewHolderEscuelas> {
+public class AdapterEscuelas extends RecyclerView.Adapter<AdapterEscuelas.ViewHolderEscuelas> implements View.OnClickListener {
 
     // Lista de escuelas que se mostraran
-    ArrayList<Escuela> escuelas = new ArrayList<>();
+    private ArrayList<Escuela> escuelas = new ArrayList<>();
+
+    // Listener
+    private View.OnClickListener listener;
 
     // Constructor
     public AdapterEscuelas(ArrayList<Escuela> escuelas) {
@@ -31,7 +33,10 @@ public class AdapterEscuelas extends RecyclerView.Adapter<AdapterEscuelas.ViewHo
     public AdapterEscuelas.ViewHolderEscuelas onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         // Inflar la vista con el layout personalizado para cada item
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.items_escuelas, null, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_escuela_adapter, null, false);
+
+        // Poner a escuhar el listener
+        view.setOnClickListener(this);
 
         // Devolvemos el adapter con la vista creada
         return new AdapterEscuelas.ViewHolderEscuelas(view);
@@ -52,6 +57,17 @@ public class AdapterEscuelas extends RecyclerView.Adapter<AdapterEscuelas.ViewHo
     @Override
     public int getItemCount() {
         return escuelas.size();
+    }
+
+    public void setOnClickListener(View.OnClickListener listener) {
+        this.listener = listener;
+    }
+
+    // Hay que crear el listener para los items manualmente
+    @Override
+    public void onClick(View view) {
+        if(listener == null) return;
+        listener.onClick(view);
     }
 
     // Instancia los elementos de cada item que contiene el recyclerView

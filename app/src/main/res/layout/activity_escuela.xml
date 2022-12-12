@@ -38,15 +38,15 @@
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tipo de escalada: "
+            android:text="Tipo de roca: "
             android:textColor="@color/black"
             android:textSize="15sp" />
 
         <TextView
-            android:id="@+id/esTvTipoEscalada"
+            android:id="@+id/esTvTipoRoca"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Placaaaa"
+            android:text="Caliza de la buena"
             android:textColor="@color/black"
             android:textSize="15sp" />
 

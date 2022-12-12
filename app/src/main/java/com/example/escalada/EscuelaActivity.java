@@ -4,11 +4,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import adapters.AdapterSectores;
+import dataBase.ViasDB;
+import elements.Escuela;
 import elements.Sector;
 
 public class EscuelaActivity extends AppCompatActivity {
@@ -16,21 +21,56 @@ public class EscuelaActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_escuelas);
+        setContentView(R.layout.activity_escuela);
 
-        // ArrayList prueba
-        ArrayList<Sector> sectores = new ArrayList<>();
-        sectores.add(new Sector("sector1", "placa desplomada"));
-        sectores.add(new Sector("Dios me vino a ver", "Adherencia"));
+        // Sacar escuela pulsada del intent
+        Intent intentData = getIntent();
+        Escuela escuelaElegida = (Escuela) intentData.getSerializableExtra("escuela");
 
-        // Adapter personalizado
-        AdapterSectores adapterSectores = new AdapterSectores(sectores);
+        // Si hay algun error en la comunicacion con el intent se muestra en un Toast y se cierra la activity
+        if(escuelaElegida == null) {
+            Toast.makeText(this, "[LOG] Error. Escuela no encontrada.", Toast.LENGTH_SHORT).show();
+            finish();
+        }
 
-        // Instancia del rcv
-        RecyclerView rcv = findViewById(R.id.esRcvSectores);
+        // Ponemos los datos de la escuela en la interfaz
+        TextView tvNombreEscuela = findViewById(R.id.esTvNomEscuela);
+        TextView tvLocalizacionEscuela = findViewById(R.id.esTvLocalizacion);
+        TextView tvTipoRoca = findViewById(R.id.esTvTipoRoca);
 
-        // Colocarle un layout y el adapter
-        rcv.setLayoutManager(new LinearLayoutManager(this));
-        rcv.setAdapter(adapterSectores);
+        tvNombreEscuela.setText(escuelaElegida.getNombre());
+        tvLocalizacionEscuela.setText(String.format("%s (%s)", escuelaElegida.getLocalizacion(), escuelaElegida.getProvincia()));
+        tvTipoRoca.setText(escuelaElegida.getTipoRoca());
+
+        // Ahora sacamos todos los sectores de la escuela que nos han pasado
+        ViasDB db = new ViasDB(this);
+
+        // Solo si no está vacio se genera el adapter
+        ArrayList<Sector> sectores;
+        //sectores.add(new Sector(1, "Belvedere", "Placa"));
+
+        if((sectores = db.getSectores(escuelaElegida.getId())) != null) {
+
+            // Adapter personalizado
+            AdapterSectores adapterSectores = new AdapterSectores(sectores);
+
+            // Instancia del rcv
+            RecyclerView rcv = findViewById(R.id.esRcvSectores);
+
+            // Colocarle un layout y el adapter
+            rcv.setLayoutManager(new LinearLayoutManager(this));
+            rcv.setAdapter(adapterSectores);
+
+            // Agregar listener
+            adapterSectores.setOnClickListener(view -> {
+
+                // Abrir la activity sectores con el sector y sus vias correspondientes
+                Intent intent = new Intent(this, SectorActivity.class);
+                startActivity(intent);
+            });
+
+        }
+
+
     }
 }

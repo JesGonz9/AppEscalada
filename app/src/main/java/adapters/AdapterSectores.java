@@ -15,10 +15,11 @@ import java.util.ArrayList;
 import elements.Sector;
 
 
-public class AdapterSectores extends RecyclerView.Adapter<AdapterSectores.ViewHolderSectores> {
+public class AdapterSectores extends RecyclerView.Adapter<AdapterSectores.ViewHolderSectores> implements View.OnClickListener {
 
     // Lista de los sectores a mostrar
     private ArrayList<Sector> sectores;
+    private View.OnClickListener listener;
 
     // Constructor
     public AdapterSectores(ArrayList<Sector> sectores) {
@@ -31,7 +32,10 @@ public class AdapterSectores extends RecyclerView.Adapter<AdapterSectores.ViewHo
     public AdapterSectores.ViewHolderSectores onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         // Inflamos la vista con el XML de la estructura
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.items_sectores, null, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_sector_adapter, null, false);
+
+        // Poner a escuchar al listener
+        view.setOnClickListener(this);
 
         // Se devuelve la vista
         return new ViewHolderSectores(view);
@@ -49,6 +53,17 @@ public class AdapterSectores extends RecyclerView.Adapter<AdapterSectores.ViewHo
     @Override
     public int getItemCount() {
         return sectores.size();
+    }
+
+    public void setOnClickListener(View.OnClickListener listener) {
+        this.listener = listener;
+    }
+
+    @Override
+    public void onClick(View view) {
+
+        if(listener == null) return;
+        listener.onClick(view);
     }
 
     // Instanciar los elementos de cada item del RecyclerView

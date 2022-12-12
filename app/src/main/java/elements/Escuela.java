@@ -1,15 +1,19 @@
 package elements;
 
-public class Escuela {
+import java.io.Serializable;
+
+public class Escuela implements Serializable {
 
     // Atributos
+    private int idEscuela = -1;
     private String nombre = "";
     private String tipoRoca = "";
     private String provincia = "";
     private String localizacion = "";
 
     // Constructor
-    public Escuela(String nombre, String tipoRoca, String provincia, String localizacion) {
+    public Escuela(int idEscuela, String nombre, String tipoRoca, String provincia, String localizacion) {
+        this.idEscuela = idEscuela;
         this.nombre = nombre;
         this.tipoRoca = tipoRoca;
         this.provincia = provincia;
@@ -19,6 +23,10 @@ public class Escuela {
     // Metodos
     public int getNumSectores() {
         return 0;
+    }
+
+    public int getId() {
+        return this.idEscuela;
     }
 
     public String getNombre() {

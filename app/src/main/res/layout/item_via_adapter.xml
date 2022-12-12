@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="8dp">
+
+
+    <TextView
+        android:id="@+id/itemViaNombre"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:text="El Kiwi"
+        android:textColor="@color/black"
+        android:textSize="15dp" />
+
+    <TextView
+        android:id="@+id/itemViaGrado"
+        android:layout_width="65dp"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:text="6b"
+        android:textColor="@color/black"
+        android:textSize="15dp" />
+
+    <TextView
+        android:id="@+id/itemViaLongitud"
+        android:layout_width="65dp"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:text="35"
+        android:textColor="@color/black"
+        android:textSize="15dp" />
+
+    <TextView
+        android:id="@+id/itemViaChapas"
+        android:layout_width="65dp"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:text="20"
+        android:textColor="@color/black"
+        android:textSize="15dp" />
+
+</LinearLayout>
